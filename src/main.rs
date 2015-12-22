@@ -47,7 +47,7 @@ pub struct Lint {
 }
 
 impl Lint {
-    fn command(&self, paths: &Vec<String>) -> Command {
+    fn command(&self, paths: &[String]) -> Command {
         let mut c = Command::new(&self.command);
         for arg in &self.args {
             c.arg(arg);
@@ -120,7 +120,7 @@ fn main() {
     save(INDEX_PATH, &new_index);
 }
 
-fn dirty_files(extension: &String, ignore: &Vec<String>, new_index: &mut Index) -> Vec<String> {
+fn dirty_files(extension: &str, ignore: &[String], new_index: &mut Index) -> Vec<String> {
     let old_index: Index = load(INDEX_PATH);
     let mut dirty_files = vec![];
 
@@ -163,7 +163,7 @@ fn dirty_files(extension: &String, ignore: &Vec<String>, new_index: &mut Index) 
     dirty_files
 }
 
-fn hash(path: &String) -> String {
+fn hash(path: &str) -> String {
     let mut file = match File::open(path) {
         Err(_) => panic!("couldn't open file to get hash: {}", path),
         Ok(file) => file,
