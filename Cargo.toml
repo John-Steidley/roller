@@ -2,6 +2,10 @@
 name = "roller"
 version = "0.1.0"
 authors = ["John Steidley <johnsteidley@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+repository = "https://github.com/john-steidley/roller"
+description = "Roller is a tool for running multiple linters and caching the results."
 
 [dependencies]
 regex = "0.1.41"
