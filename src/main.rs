@@ -30,8 +30,8 @@ impl Stringable for OsString {
     }
 }
 
-const INDEX_PATH: &'static str = "blaze/file_index.json";
-const CONFIG_PATH: &'static str = "blaze/lint_config.json";
+const INDEX_PATH: &'static str = ".roller_index.json";
+const CONFIG_PATH: &'static str = ".roller_config.json";
 
 // Map from path to hash
 #[derive(RustcDecodable, RustcEncodable, Default)]
