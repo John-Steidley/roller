@@ -1,4 +1,8 @@
-Roller is a tool for running multiple linters and caching the results. To use Roller, add a `.roller_config.json` file to your project. Here's an example:
+Roller is a tool for running multiple linters and caching the results.
+
+[![Clippy Linting Result](http://clippy.bashy.io/github/john-steidley/roller/master/badge.svg)](http://clippy.bashy.io/github/john-steidley/roller/master/log)
+
+To use Roller, add a `.roller_config.json` file to your project. Here's an example:
 
     {
       "filetypes": {
