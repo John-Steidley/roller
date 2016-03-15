@@ -47,7 +47,7 @@ pub struct Lint {
 }
 
 impl Lint {
-    fn command(&self, paths: &[String]) -> Command {
+    fn generate_command(&self, paths: &[String]) -> Command {
         let mut c = Command::new(&self.command);
         for arg in &self.args {
             c.arg(arg);
@@ -60,7 +60,7 @@ impl Lint {
 
     // runs this lint on all given files, return all the clean files
     fn resolve(&self, files: Vec<String>) -> Vec<String> {
-        let output = &self.command(&files)
+        let output = &self.generate_command(&files)
                           .output()
                           .unwrap_or_else(|_| {
                               println!("{} not installed", self.name);
