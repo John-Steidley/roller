@@ -1,5 +1,4 @@
 extern crate crypto;
-extern crate regex;
 extern crate rustc_serialize;
 
 use crypto::md5::Md5;
@@ -62,22 +61,21 @@ impl Lint {
     fn resolve(&self, files: Vec<String>) -> Vec<String> {
         let output = &self.generate_command(&files)
                           .output()
-                          .unwrap_or_else(|_| {
+                          .unwrap_or_else(|_| { // TODO: Handle the specific error, and otherwise fail more generally
                               println!("{} not installed", self.name);
                               process::exit(1);
                           });
-        let stdout = String::from_utf8_lossy(&output.stdout);
+        let stdout: String = String::from_utf8(output.stdout.clone()).unwrap();
         if stdout != "" {
             println!("{}", stdout);
         }
-        let stderr = String::from_utf8_lossy(&output.stderr);
+        let stderr: String = String::from_utf8(output.stderr.clone()).unwrap();
         if stderr != "" {
             println!("{}", stderr);
         }
         files.into_iter()
              .filter(|file| {
-                 let re = regex::Regex::new(&format!(".*{}.*", file)).unwrap();
-                 !re.is_match(&stdout) && !re.is_match(&stderr)
+                 !stdout.contains(file) && !stderr.contains(file)
              })
              .collect()
     }
